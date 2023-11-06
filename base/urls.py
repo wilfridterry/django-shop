@@ -16,19 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
-from api.models import CourseResourece, CategoryResource
-from tastypie.api import Api
 
-api = Api(api_name='v1')
-course_resource = CourseResourece()
-category_resource = CategoryResource()
-api.register(course_resource)
-api.register(category_resource)
 
 urlpatterns = [
+    path('', include('shop.urls')),
     path('admin/', admin.site.urls),
-    path('shop/', include('shop.urls')),
-    path('api/', include(api.urls)),
+    path('api/', include('api.urls')),
 ]
 
 handler404 = 'base.views.my_custom_not_found_view'
