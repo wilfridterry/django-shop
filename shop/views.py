@@ -6,7 +6,7 @@ from .models import Course, Category
 def index(request: HttpRequest) -> HttpResponse:
     courses = Course.objects.all()
     
-    return render(request, 'courses.html', {'courses': courses})
+    return render(request, 'shop/courses.html', {'courses': courses})
 
 
 def show_course(request: HttpRequest, course_id: int) -> HttpResponse:
@@ -18,7 +18,7 @@ def show_course(request: HttpRequest, course_id: int) -> HttpResponse:
 
     course = get_object_or_404(Course, pk=course_id)
 
-    return render(request, 'detail.html', {'course': course})
+    return render(request, 'shop/detail.html', {'course': course})
 
 
 def show_category(request: HttpRequest, category_id: int) -> HttpResponse:
@@ -29,4 +29,4 @@ def show_category(request: HttpRequest, category_id: int) -> HttpResponse:
         'courses': category.course_set.all(),
     }
 
-    return render(request, 'category.html', context)
+    return render(request, 'shop/category.html', context)
